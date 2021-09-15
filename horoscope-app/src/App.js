@@ -1,25 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      sign: '',
+      date: '',
+      horoscope: '',
+    }
+
+    this.clickHandler = this.clickHandler.bind(this)
+  }
+
+  clickHandler () {
+    axios.get('https://ohmanda.com/api/horoscope/aquarius/')
+    .then(res => this.setState({
+        sign: res.data.sign,
+        date: res.data.date,
+        horoscope: res.data.horoscope,  
+      }))
+  }
+
+  render () {
+    return (
+      <div>
+        <button onClick={this.clickHandler}>Get Horoscope</button>
+        <p>{this.state.horoscope}</p>
+      </div>
+    )
+  }
 }
+
+
 
 export default App;
