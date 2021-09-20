@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import Card from './Card';
 
 
 class GetHoroscope extends React.Component {
