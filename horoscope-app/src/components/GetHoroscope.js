@@ -8,7 +8,7 @@ class GetHoroscope extends React.Component {
      constructor(props){
         super(props);
         this.state = {
-          today: '',
+          horoscope: '',
           value: '',
         }
 
@@ -24,8 +24,6 @@ class GetHoroscope extends React.Component {
         this.setState({value: e.target.value})
 
         this.getHoroscope(e.target.value);
-
-        this.props.history.push('/horoscope')
     }
 
     getHoroscope(zodiacSign){
@@ -33,9 +31,9 @@ class GetHoroscope extends React.Component {
         const sign = zodiacSign;
          axios.post("https://aztro.sameerkumar.website/?sign="+sign+"&day=today")
             .then(res => {
-                console.log(res)
+                console.log("this is the data",res)
                 this.setState({
-                    today: res.data
+                    horoscope: res.data
                 })
             })
             .catch(err => {
@@ -43,16 +41,18 @@ class GetHoroscope extends React.Component {
             })
     }
 
+    componentDidMount() {
+        this.getHoroscope(this.state.value);
+    }
+
 
     render() {
 
-        const today = this.state.today;
-        const { location, history } = this.props
+        const horoscope = this.state.horoscope;
 
 
         return (
           <div>
-              <Card data={this.state} />
             <h1>Choose your sign</h1>
             <div value={this.state.value}>
                 <button value="Aquarius" onClick={this.handleChange}>Aquarius</button>
@@ -67,14 +67,22 @@ class GetHoroscope extends React.Component {
                 <button value="Scorpio" onClick={this.handleChange}>Scorpio</button>
                 <button value="Sagittarius" onClick={this.handleChange}>Sagittarius</button>
                 <button value="Capricorn" onClick={this.handleChange}>Capricorn</button>
+
+            </div>
+            <div>
+                <p>{horoscope.current_date}</p>
+                <p>{horoscope.description}</p>
+                <p>{horoscope.color} is your lucky color</p>
+                <p>{horoscope.compatibility} is your most compatible sign</p>
+                <p>{horoscope.lucky_number} is your lucky number</p>
+                <p>Mood: {horoscope.mood}</p>
+                <p>Lukcy time:{horoscope.lucky_time}</p>
             </div>
           </div>
         );
     }
 
-    componentDidMount() {
-        this.getHoroscope(this.state.value);
-    }
+
 }
 
 
