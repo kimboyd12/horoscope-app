@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+
 import aquarius from './assets/aquarius.png'
 import cancer from './assets/cancer.png'
 import capricorn from './assets/capricorn.png'
@@ -14,10 +15,17 @@ import virgo from './assets/virgo.png'
 import aries from './assets/aries.png'
 import libra from './assets/libra.png'
 
+import color from './assets/color.png'
+import compatible from './assets/compatible.png'
+import mood from './assets/mood.png'
+import clock from './assets/clock.png'
+import lucky from './assets/lucky.png'
+
 import styled from 'styled-components';
 
 const Header = styled.h1`
-
+    font-family: 'Cormorant Garamond';
+    font-size: 40px;
 `
 
 const Container = styled.div`
@@ -33,8 +41,32 @@ const Button = styled.button`
     background: white;
     border: none;
     padding:25px;
+
 `
 
+const Card = styled.div`
+    display: flex;
+    width: 900px;
+    height: 300px;
+    border: 2px solid black;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 40px;
+    flex-direction: column;
+`
+
+const CardInfo = styled.p`
+    display:flex;
+    margin: 5px;
+    font-family: 'Lato';
+    margin: auto;
+    font-size: 20px;
+    align-items: center;
+`
+const CardImg = styled.img`
+    height: 35px;
+    margin-right: 6px;
+`
 
 
 class GetHoroscope extends React.Component {
@@ -86,6 +118,7 @@ class GetHoroscope extends React.Component {
 
         return (
             <div>
+
           <Container>
             <Header>Choose your sign</Header>
             <div value={this.state.value}>
@@ -101,9 +134,18 @@ class GetHoroscope extends React.Component {
                 <Button value="Scorpio" onClick={this.handleChange}><img src={scorpio} alt="scorpio" height="100px"></img></Button>
                 <Button value="Sagittarius" onClick={this.handleChange}><img src={sagittarius} alt="sagittarius" height="100px"></img></Button>
                 <Button value="Capricorn" onClick={this.handleChange}><img src={capricorn} alt="capricorn" height="100px"></img></Button>
-
             </div>
           </Container>
+
+          <Card>
+                <CardInfo>{horoscope.current_date}</CardInfo>
+                <CardInfo>{horoscope.description}</CardInfo>
+                <CardInfo><CardImg src={color} alt="color-palette"></CardImg>{horoscope.color} is your lucky color</CardInfo>
+                <CardInfo><CardImg src={compatible} alt="compatible" ></CardImg>{horoscope.compatibility} is your most compatible sign</CardInfo>
+                <CardInfo><CardImg src={lucky} alt="lucky-horseshoe" ></CardImg>{horoscope.lucky_number} is your lucky number</CardInfo>
+                <CardInfo><CardImg src={mood} alt="moods"></CardImg>Today you will be feeling {horoscope.mood}</CardInfo>
+                <CardInfo><CardImg src={clock} alt="clock"></CardImg>Lucky time:{horoscope.lucky_time}</CardInfo>
+          </Card>
           </div>
         );
     }

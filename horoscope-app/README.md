@@ -73,3 +73,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 <!-- zodiac by Made x Made from the Noun Project -->
+<!-- together by Chanut is Industries from the Noun Project -->
+<!-- color by Saeful Muslim from the Noun Project -->
+<!-- Theater by monkik from the Noun Project -->
+<!-- horse shoe by Made x Made from the Noun Project -->
+<!-- clock by Mangsaabguru from the Noun Project -->
