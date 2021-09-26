@@ -1,6 +1,40 @@
 import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import aquarius from './assets/aquarius.png'
+import cancer from './assets/cancer.png'
+import capricorn from './assets/capricorn.png'
+import gemini from './assets/gemini.png'
+import leo from './assets/leo.png'
+import pisces from './assets/pisces.png'
+import sagittarius from './assets/sagittarius.png'
+import scorpio from './assets/scorpio.png'
+import taurus from './assets/taurus.png'
+import virgo from './assets/virgo.png'
+import aries from './assets/aries.png'
+import libra from './assets/libra.png'
+
+import styled from 'styled-components';
+
+const Header = styled.h1`
+
+`
+
+const Container = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    width: 900px;
+    justify-content: center;
+    margin: auto;
+
+`
+
+const Button = styled.button`
+    background: white;
+    border: none;
+    padding:25px;
+`
+
 
 
 class GetHoroscope extends React.Component {
@@ -19,10 +53,10 @@ class GetHoroscope extends React.Component {
 
     handleChange(e) {
         e.preventDefault();
-        console.log(e.target.value);
-        this.setState({value: e.target.value})
+        console.log(e.currentTarget.value, "clicked");
+        this.setState({value: e.currentTarget.value})
 
-        this.getHoroscope(e.target.value);
+        this.getHoroscope(e.currentTarget.value);
     }
 
     getHoroscope(zodiacSign){
@@ -51,32 +85,25 @@ class GetHoroscope extends React.Component {
 
 
         return (
-          <div>
-            <h1>Choose your sign</h1>
+            <div>
+          <Container>
+            <Header>Choose your sign</Header>
             <div value={this.state.value}>
-                <button value="Aquarius" onClick={this.handleChange}>Aquarius</button>
-                <button value="Pisces" onClick={this.handleChange}>Pisces</button>
-                <button value="Aries" onClick={this.handleChange}>Aries</button>
-                <button value="Taurus" onClick={this.handleChange}>Taurus</button>
-                <button value="Gemini" onClick={this.handleChange}>Gemini</button>
-                <button value="Cancer" onClick={this.handleChange}>Cancer</button>
-                <button value="Leo" onClick={this.handleChange}>Leo</button>
-                <button value="Virgo" onClick={this.handleChange}>Virgo</button>
-                <button value="Libra" onClick={this.handleChange}>Libra</button>
-                <button value="Scorpio" onClick={this.handleChange}>Scorpio</button>
-                <button value="Sagittarius" onClick={this.handleChange}>Sagittarius</button>
-                <button value="Capricorn" onClick={this.handleChange}>Capricorn</button>
+                <Button value="aquarius" onClick={this.handleChange}><img src={aquarius} alt="aquarius" height="100px"></img></Button>
+                <Button value="Pisces" onClick={this.handleChange}><img src={pisces} alt="pisces" height="100px"></img></Button>
+                <Button value="Aries" onClick={this.handleChange}><img src={aries} alt="aries" height="100px"></img></Button>
+                <Button value="Taurus" onClick={this.handleChange}><img src={taurus} alt="taurus" height="100px"></img></Button>
+                <Button value="Gemini" onClick={this.handleChange}><img src={gemini} alt="gemini" height="100px"></img></Button>
+                <Button value="Cancer" onClick={this.handleChange}><img src={cancer} alt="cancer" height="100px"></img></Button>
+                <Button value="Leo" onClick={this.handleChange}><img src={leo} alt="leo" height="100px"></img></Button>
+                <Button value="Virgo" onClick={this.handleChange}><img src={virgo} alt="virgo" height="100px"></img></Button>
+                <Button value="Libra" onClick={this.handleChange}><img src={libra} alt="libra" height="100px"></img></Button>
+                <Button value="Scorpio" onClick={this.handleChange}><img src={scorpio} alt="scorpio" height="100px"></img></Button>
+                <Button value="Sagittarius" onClick={this.handleChange}><img src={sagittarius} alt="sagittarius" height="100px"></img></Button>
+                <Button value="Capricorn" onClick={this.handleChange}><img src={capricorn} alt="capricorn" height="100px"></img></Button>
 
             </div>
-            <div>
-                <p>{horoscope.current_date}</p>
-                <p>{horoscope.description}</p>
-                <p>{horoscope.color} is your lucky color</p>
-                <p>{horoscope.compatibility} is your most compatible sign</p>
-                <p>{horoscope.lucky_number} is your lucky number</p>
-                <p>Mood: {horoscope.mood}</p>
-                <p>Lukcy time:{horoscope.lucky_time}</p>
-            </div>
+          </Container>
           </div>
         );
     }
